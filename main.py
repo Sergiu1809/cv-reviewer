@@ -1,5 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+# Allows FastAPI to serve static files directly
 from fastapi.staticfiles import StaticFiles
+# Middleware that allows different ports to communicate
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import anthropic
@@ -10,6 +12,8 @@ load_dotenv()
 app = FastAPI()
 client = anthropic.Anthropic()
 
+# CORS (Cross-Origin Resource Sharing) middleware
+# Without this, the browser blocks requests from a different origin
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
