@@ -23,6 +23,7 @@ async function displayFeedback(){
     
     try{
     const data = await getAPIResponse();
+    //marked.parse() converts markdown to HTML
     cvFeedback.innerHTML = marked.parse(data.response)
     }
     catch(error){
@@ -30,6 +31,7 @@ async function displayFeedback(){
     }
 }
 
+// click -> displayFeedback() -> getAPIResponse() -> fetch() -> FastAPI -> Anthropic -> response -> render 
 submitBtn.addEventListener("click", () =>{
    displayFeedback()
 })
